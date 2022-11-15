@@ -1,10 +1,22 @@
-require('dotenv').config()
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
+const sequelize = require("./db");
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-//1 параметром указываем какой порт должен прослушивать наш сервер
-//2 параметром передаем калбэк в котором сообщаем порт с которого стартанули
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+//Функция для подключения к БД
+//Функция делаем асинхронной, потому что все операции с БД являются асинхронными
+const start = async () => {
+  try {
+    await sequelize.authenticate()  //authenticate() - с помощью нее устанавливается подключение к БД
+    await sequelize.sync()          //sync() - сверяет состояние БД, которое мы опишем
+    app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+  } catch (error) {
+        console.log(error);
+  }
+};
+
+
+start();
