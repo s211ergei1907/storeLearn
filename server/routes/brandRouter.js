@@ -1,11 +1,11 @@
 const Router = require('express')
 const router = new Router()
-// const brandController = require('../controllers/brandController')
+const brandController = require('../controllers/brandController')
 
 // Метод post для того чтобы brand создавать
-router.post('/')
+router.post('/', brandController.create)
 //Метод get чтобы получать
-router.get('/')
+router.get('/', brandController.getAll)
 
 module.exports = router
 
