@@ -7,7 +7,7 @@ class BrandController {
         const brand = await Brand.create({name})
         return res.json(brand)
     }
-
+    // Любые запросы к БД являются ассинзронными
     async getAll(req, res) {
         const brands = await Brand.findAll()
         return res.json(brands)
