@@ -14,7 +14,6 @@ export default class UserStore {
         this._user = user
     }
 
-    //Компьютед ф-ий
     get isAuth() {
         return this._isAuth
     }

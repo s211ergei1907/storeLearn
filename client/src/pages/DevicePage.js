@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Card, Col, Container, Image, Row} from "react-bootstrap";
+import {Button, Card, Col, Container, Image, Form} from "react-bootstrap";
 import bigStar from '../assets/bigStar.png'
 import {useParams} from 'react-router-dom'
 import {fetchOneDevice} from "../http/deviceAPI";
@@ -13,12 +13,12 @@ const DevicePage = () => {
 
     return (
         <Container className="mt-3">
-            <Row>
+            <Form>
                 <Col md={4}>
                     <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img}/>
                 </Col>
                 <Col md={4}>
-                    <Row className="d-flex flex-column align-items-center">
+                    <Form className="d-flex flex-column align-items-center">
                         <h2>{device.name}</h2>
                         <div
                             className="d-flex align-items-center justify-content-center"
@@ -26,7 +26,7 @@ const DevicePage = () => {
                         >
                             {device.rating}
                         </div>
-                    </Row>
+                    </Form>
                 </Col>
                 <Col md={4}>
                     <Card
@@ -37,15 +37,15 @@ const DevicePage = () => {
                         <Button variant={"outline-dark"}>Добавить в корзину</Button>
                     </Card>
                 </Col>
-            </Row>
-            <Row className="d-flex flex-column m-3">
+            </Form>
+            <Form className="d-flex flex-column m-3">
                 <h1>Характеристики</h1>
                 {device.info.map((info, index) =>
-                    <Row key={info.id} style={{background: index % 2 === 0 ? 'lightgray' : 'transparent', padding: 10}}>
+                    <Form key={info.id} style={{background: index % 2 === 0 ? 'lightgray' : 'transparent', padding: 10}}>
                         {info.title}: {info.description}
-                    </Row>
+                    </Form>
                 )}
-            </Row>
+            </Form>
         </Container>
     );
 };
